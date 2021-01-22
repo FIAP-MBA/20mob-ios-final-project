@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1108928C25BA3901002951D8 /* ShoppingModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1108928725BA3900002951D8 /* ShoppingModel.xcdatamodeld */; };
+		1108928D25BA3901002951D8 /* ShoppingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108928925BA3900002951D8 /* ShoppingTableViewController.swift */; };
+		1108928E25BA3901002951D8 /* UiViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108928A25BA3900002951D8 /* UiViewController+CoreData.swift */; };
+		1108928F25BA3901002951D8 /* ShoppingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108928B25BA3901002951D8 /* ShoppingTableViewCell.swift */; };
+		1108929325BA401F002951D8 /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108929225BA401F002951D8 /* ShoppingViewController.swift */; };
+		1108929525BA4553002951D8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108929425BA4553002951D8 /* SettingsViewController.swift */; };
+		1108929725BA472A002951D8 /* StateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108929625BA472A002951D8 /* StateTableViewCell.swift */; };
+		1108929925BA4AD8002951D8 /* TotalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108929825BA4AD8002951D8 /* TotalViewController.swift */; };
 		11BC703D255B5879006811C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BC703C255B5879006811C6 /* AppDelegate.swift */; };
 		11BC703F255B5879006811C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BC703E255B5879006811C6 /* SceneDelegate.swift */; };
 		11BC7041255B5879006811C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BC7040255B5879006811C6 /* ViewController.swift */; };
@@ -16,6 +24,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1108928825BA3900002951D8 /* ShoppingModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShoppingModel.xcdatamodel; sourceTree = "<group>"; };
+		1108928925BA3900002951D8 /* ShoppingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingTableViewController.swift; sourceTree = "<group>"; };
+		1108928A25BA3900002951D8 /* UiViewController+CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UiViewController+CoreData.swift"; sourceTree = "<group>"; };
+		1108928B25BA3901002951D8 /* ShoppingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingTableViewCell.swift; sourceTree = "<group>"; };
+		1108929225BA401F002951D8 /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
+		1108929425BA4553002951D8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1108929625BA472A002951D8 /* StateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTableViewCell.swift; sourceTree = "<group>"; };
+		1108929825BA4AD8002951D8 /* TotalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalViewController.swift; sourceTree = "<group>"; };
 		11BC7039255B5878006811C6 /* TrabalhoFinal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrabalhoFinal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11BC703C255B5879006811C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11BC703E255B5879006811C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +72,10 @@
 		11BC703B255B5878006811C6 /* TrabalhoFinal */ = {
 			isa = PBXGroup;
 			children = (
+				1108928725BA3900002951D8 /* ShoppingModel.xcdatamodeld */,
+				1108928B25BA3901002951D8 /* ShoppingTableViewCell.swift */,
+				1108928925BA3900002951D8 /* ShoppingTableViewController.swift */,
+				1108928A25BA3900002951D8 /* UiViewController+CoreData.swift */,
 				11BC703C255B5879006811C6 /* AppDelegate.swift */,
 				11BC703E255B5879006811C6 /* SceneDelegate.swift */,
 				11BC7040255B5879006811C6 /* ViewController.swift */,
@@ -63,6 +83,10 @@
 				11BC7045255B587A006811C6 /* Assets.xcassets */,
 				11BC7047255B587A006811C6 /* LaunchScreen.storyboard */,
 				11BC704A255B587A006811C6 /* Info.plist */,
+				1108929225BA401F002951D8 /* ShoppingViewController.swift */,
+				1108929425BA4553002951D8 /* SettingsViewController.swift */,
+				1108929625BA472A002951D8 /* StateTableViewCell.swift */,
+				1108929825BA4AD8002951D8 /* TotalViewController.swift */,
 			);
 			path = TrabalhoFinal;
 			sourceTree = "<group>";
@@ -138,9 +162,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1108929925BA4AD8002951D8 /* TotalViewController.swift in Sources */,
 				11BC7041255B5879006811C6 /* ViewController.swift in Sources */,
+				1108929325BA401F002951D8 /* ShoppingViewController.swift in Sources */,
 				11BC703D255B5879006811C6 /* AppDelegate.swift in Sources */,
 				11BC703F255B5879006811C6 /* SceneDelegate.swift in Sources */,
+				1108928E25BA3901002951D8 /* UiViewController+CoreData.swift in Sources */,
+				1108928D25BA3901002951D8 /* ShoppingTableViewController.swift in Sources */,
+				1108928F25BA3901002951D8 /* ShoppingTableViewCell.swift in Sources */,
+				1108929725BA472A002951D8 /* StateTableViewCell.swift in Sources */,
+				1108928C25BA3901002951D8 /* ShoppingModel.xcdatamodeld in Sources */,
+				1108929525BA4553002951D8 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +368,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1108928725BA3900002951D8 /* ShoppingModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1108928825BA3900002951D8 /* ShoppingModel.xcdatamodel */,
+			);
+			currentVersion = 1108928825BA3900002951D8 /* ShoppingModel.xcdatamodel */;
+			path = ShoppingModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 11BC7031255B5878006811C6 /* Project object */;
 }
