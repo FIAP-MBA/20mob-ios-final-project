@@ -204,7 +204,6 @@ extension RegisterShoppingViewController: UIPickerViewDelegate, UIPickerViewData
 
 //MARK: - Image Picker delegate
 extension RegisterShoppingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             ivProductImage.image = image
@@ -216,7 +215,6 @@ extension RegisterShoppingViewController: UIImagePickerControllerDelegate, UINav
 //MARK: - TextField Delegate
 extension RegisterShoppingViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         textField.resignFirstResponder()
         return true
     }

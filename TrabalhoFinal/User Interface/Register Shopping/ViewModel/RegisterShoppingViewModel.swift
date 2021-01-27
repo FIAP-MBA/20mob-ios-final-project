@@ -30,19 +30,22 @@ final class RegisterShoppingViewModel {
         states.count
     }
     var name: String {
-        ""
+        product?.name ?? ""
     }
     var image: Data? {
-        nil
+        product?.image
     }
     var isCredit: Bool {
-        false
+        product?.isCredit ?? false
     }
     var value: String {
-        ""
+        "\(product?.value ?? 0.00)"
     }
     var state: Int {
-        0
+        if let product = product, let state = product.state {
+            return states.firstIndex(of: state) ?? 0
+        }
+        return 0
     }
     
     init(id: UUID?, isEditing: Bool, _ productRepository: ProductRepositoryProtocol = ProductRepository(), _ stateRepository: StateRepositoryProtocol = StateRepository()) {
