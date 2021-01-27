@@ -11,12 +11,12 @@ import CoreData
 
 
 class TotalViewController: UIViewController {
-
+    
     @IBOutlet weak var lbTotalUSD: UILabel!
     @IBOutlet weak var lbTotalBRL: UILabel!
     
-
-var totalUSD: Decimal = 0.0
+    
+    var totalUSD: Decimal = 0.0
     var totalBRL: Decimal = 0.0
     
     var exchangeRate: Decimal? = 5.0
@@ -39,7 +39,7 @@ var totalUSD: Decimal = 0.0
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
+        
         //Carrega dolar e IOF do userDefaults
         exchangeRate = NSDecimalNumber(string: ud.string(forKey: UserDefaultKeys.dolar.rawValue) ?? "0.0").decimalValue
         percIOF = NSDecimalNumber(string: ud.string(forKey: UserDefaultKeys.iof.rawValue) ?? "0.0").decimalValue
@@ -82,7 +82,7 @@ var totalUSD: Decimal = 0.0
                 
                 //Salva produtos numa variavel
                 let products = fetchedResultController.fetchedObjects!
-                                
+                
                 //Varre todos os produtos existentes
                 for product in products {
                     
@@ -99,11 +99,11 @@ var totalUSD: Decimal = 0.0
                     if (product.states?.tax?.decimalValue != nil) {
                         taxFromState = product.states?.tax?.decimalValue
                     }
-                                        
+                    
                     //Calcula o total em BRL
                     //totalProductBRL = ValorProduto * ((TaxaEstado/100) + 1) * CotacaoDolar
                     var totalProductBRL = decimalValueOfProduct! * ( (taxFromState!/100) + 1 ) * exchangeRate!
- 
+                    
                     //Verifica se produto foi pago com cartão
                     if product.isCredit {
                         //Usou cartão de credito, incluir IOF
@@ -122,7 +122,7 @@ var totalUSD: Decimal = 0.0
         lbTotalUSD.text = String(format: "%.2f", Double(truncating:totalUSD as NSNumber))
         lbTotalBRL.text = String(format: "%.2f", Double(truncating:totalBRL as NSNumber))
     }
-
+    
 }
 
 extension TotalViewController: NSFetchedResultsControllerDelegate {

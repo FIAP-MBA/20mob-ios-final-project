@@ -1,5 +1,5 @@
 //
-//  ShoppingViewController.swift
+//  RegisterShoppingViewController.swift
 //  TrabalhoFinal
 //
 //  Created by Rafael Barros on 21/01/21.
@@ -9,8 +9,8 @@
 import UIKit
 import CoreData
 
-class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+class RegisterShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
     @IBOutlet weak var tfProductName: UITextField!
     @IBOutlet weak var pvProductState: UIPickerView!
     @IBOutlet weak var tfProductValue: UITextField!
@@ -24,7 +24,7 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var stateSelected: State?
     var alertText: Bool = false
     var alertNumber: Bool = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,7 +36,7 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.pvProductState.dataSource = self
         
         //print(pvProductState.numberOfRows(inComponent: 0))
-
+        
         if let product = product {
             tfProductName.text = product.name
             tfProductValue.text = "\(product.value ?? 0)"
@@ -68,7 +68,7 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         //print("tapped Done")
         tfProductValue.resignFirstResponder()
     }
-
+    
     @objc func tapCancel() {
         //print("tapped cancel")
         tfProductValue.resignFirstResponder()
@@ -140,7 +140,7 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
     }
-
+    
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         // Your action
@@ -160,7 +160,7 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
-                
+        
         present(alert, animated: true, completion: nil)
     }
     
@@ -210,17 +210,17 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
         
         let alertController = UIAlertController(title: "ComprasUSA", message:
-            text, preferredStyle: .alert)
+                                                    text, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
-
+        
         self.present(alertController, animated: true, completion: nil)
     }
     
     func validateText(_ text: String?) -> Bool {
         guard let message = text else { return false }
-            if message == "" || message.isEmpty {
-                return false
-            }
+        if message == "" || message.isEmpty {
+            return false
+        }
         return true
     }
     
@@ -228,10 +228,10 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         guard let number = text else { return false }
         return number.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
-
+    
 }
 
-extension ShoppingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension RegisterShoppingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
@@ -242,7 +242,7 @@ extension ShoppingViewController: UIImagePickerControllerDelegate, UINavigationC
 }
 
 //Implementando o protocolo NSFetchedResultsControllerDelegate
-extension ShoppingViewController: NSFetchedResultsControllerDelegate {
+extension RegisterShoppingViewController: NSFetchedResultsControllerDelegate {
     
     //Método que é chamado sempre que uma alteração é feita no contexto
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -252,9 +252,9 @@ extension ShoppingViewController: NSFetchedResultsControllerDelegate {
     }
 }
 
-extension ShoppingViewController: UITextFieldDelegate {
+extension RegisterShoppingViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-                
+        
         textField.resignFirstResponder()
         return true
     }

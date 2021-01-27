@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class ShoppingTableViewController: UITableViewController {
-
+    
     //Criando label que será a mensagem caso não tenham compras cadastradas
     var label = UILabel(frame: CGRect(x: 0, y:0, width: 200, height: 44))
     
@@ -19,7 +19,7 @@ class ShoppingTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //Definindo o texto e alinhamento da label
         label.text = "Sua lista está vazia!"
         label.textAlignment = .center
@@ -53,20 +53,20 @@ class ShoppingTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "edit" {
-            if let vc = segue.destination as? ShoppingViewController {
+            if let vc = segue.destination as? RegisterShoppingViewController {
                 vc.product = fetchedResultController.object(at: tableView.indexPathForSelectedRow!)
             }
         }
         
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         //Caso existam objetos recuperados pela fetchedResultController, preparamos a tableView
@@ -82,26 +82,26 @@ class ShoppingTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as?
-            ShoppingTableViewCell else {
+                ShoppingTableViewCell else {
             return UITableViewCell()
         }
-
+        
         //Recuperando da fetchedResultController o produto referente à célula
         let product  = fetchedResultController.object(at: indexPath)
-
+        
         cell.prepare(with: product)
         return cell
     }
     
-
+    
     /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+    
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -118,9 +118,9 @@ class ShoppingTableViewController: UITableViewController {
                 print(error.localizedDescription)
             }
         }
-          
+        
     }
-
+    
 }
 
 //Implementando o protocolo NSFetchedResultsControllerDelegate

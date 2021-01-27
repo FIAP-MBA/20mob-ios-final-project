@@ -9,7 +9,7 @@
 import UIKit
 
 class ShoppingTableViewCell: UITableViewCell {
-
+    
     
     @IBOutlet weak var lbProductName: UILabel!
     @IBOutlet weak var lbProductValue: UILabel!
@@ -25,5 +25,5 @@ class ShoppingTableViewCell: UITableViewCell {
             ivProductImage.image = UIImage(data: data)
         }
     }
-
+    
 }

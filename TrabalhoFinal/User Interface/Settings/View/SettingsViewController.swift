@@ -25,14 +25,14 @@ class SettingsViewController: UIViewController {
     var statesArray: [State] = []
     var label = UILabel(frame: CGRect(x: 0, y:0, width: 200, height: 22))
     var fetchedResultsController: NSFetchedResultsController<State>!
-
+    
     @IBOutlet weak var tfDolar1: UITextField!
     @IBOutlet weak var tfIof1: UITextField!
     @IBOutlet weak var tvTax: UITableView!
     @IBAction func btAddEstado(_ sender: UIButton) {
-    
-
-showInputDialog(title: "Adicionar Estado",
+        
+        
+        showInputDialog(title: "Adicionar Estado",
                         
                         actionTitle: "Adicionar",
                         cancelTitle: "Cancelar",
@@ -40,8 +40,8 @@ showInputDialog(title: "Adicionar Estado",
                         inputPlaceholder2:"Imposto",
                         inputKeyboardType: .default,
                         inputKeyboardType2: .decimalPad
-            
-            )
+                        
+        )
         { (input:String? ) in
             
             
@@ -84,7 +84,7 @@ showInputDialog(title: "Adicionar Estado",
         ud.set(tfDolar1.text!, forKey: UserDefaultKeys.dolar.rawValue)
         ud.set(tfIof1.text!, forKey: UserDefaultKeys.iof.rawValue)
     }
-
+    
     @objc func tapCancel() {
         //print("tapped cancel")
         
@@ -124,7 +124,7 @@ extension SettingsViewController: UITableViewDelegate{
             
             //Também apagar todos os produtos com o mesmo state
             //for product in state.products! {
-                //context.delete(product as! NSManagedObject)
+            //context.delete(product as! NSManagedObject)
             //}
             
             try? context.save()
@@ -233,9 +233,9 @@ extension UIViewController {
                 try? self.context.save()
             } else {
                 let alert = UIAlertController(title: "Valor Invalido", message: "Insira um valor valido", preferredStyle: .alert)
-
+                
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-
+                
                 self.present(alert, animated: true)
             }
             
@@ -250,17 +250,17 @@ extension UIViewController {
     
     func validateNumber2(_ text: String?) -> Bool {
         guard let number = text else { return false }
-            if number == "" || number.isEmpty {
-                return false
-            }
+        if number == "" || number.isEmpty {
+            return false
+        }
         return number.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
     
     func validateText2(_ text: String?) -> Bool {
         guard let message = text else { return false }
-            if message == "" || message.isEmpty {
-                return false
-            }
+        if message == "" || message.isEmpty {
+            return false
+        }
         return true
     }
 }
@@ -280,7 +280,7 @@ extension UITextField {
     func addDoneCancelToolbar(onDone: (target: Any, action: Selector)? = nil, onCancel: (target: Any, action: Selector)? = nil) {
         let onCancel = onCancel ?? (target: self, action: #selector(cancelButtonTapped))
         let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
-
+        
         let toolbar: UIToolbar = UIToolbar()
         toolbar.barStyle = .default
         toolbar.items = [
@@ -289,13 +289,13 @@ extension UITextField {
             UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
         ]
         toolbar.sizeToFit()
-
+        
         self.inputAccessoryView = toolbar
     }
-
-// Default actions:
-@objc func doneButtonTapped() { self.resignFirstResponder() }
-@objc func cancelButtonTapped() { self.resignFirstResponder() }
+    
+    // Default actions:
+    @objc func doneButtonTapped() { self.resignFirstResponder() }
+    @objc func cancelButtonTapped() { self.resignFirstResponder() }
     
 }
 

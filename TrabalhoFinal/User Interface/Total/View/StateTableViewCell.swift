@@ -11,7 +11,7 @@ import UIKit
 
 
 class StateTableViewCell: UITableViewCell{
-
+    
     @IBOutlet weak var lbState: UILabel!
     @IBOutlet weak var lbTax: UILabel!
     
