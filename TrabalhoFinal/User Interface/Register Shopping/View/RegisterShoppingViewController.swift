@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import CoreData
 
-final class RegisterShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+final class RegisterShoppingViewController: UIViewController {
     
     //MARK: - IBOutlet
     @IBOutlet weak var tfProductName: UITextField!
@@ -35,8 +34,14 @@ final class RegisterShoppingViewController: UIViewController, UIPickerViewDelega
     //MARK: - Methods
     private func setupView() {
         //Vinculando o UIPickerView a esta classe
-        self.pvProductState.delegate = self
-        self.pvProductState.dataSource = self
+        pvProductState.delegate = self
+        pvProductState.dataSource = self
+        viewModel?.delegate = self
+        
+        if viewModel?.isEditing ?? false {
+            btProductSave.setTitle("Atualizar", for: .normal)
+            title = "Atualizar Produto"
+        }
         
         // Do any additional setup after loading the view.
         ivProductImage.isUserInteractionEnabled = true
@@ -50,39 +55,19 @@ final class RegisterShoppingViewController: UIViewController, UIPickerViewDelega
         viewModel?.loadData()
     }
     
+    func selectPicture(sourceType: UIImagePickerController.SourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     @objc private func tapDone() {
         tfProductValue.resignFirstResponder()
     }
     
     @objc private func tapCancel() {
         tfProductValue.resignFirstResponder()
-    }
-    
-    //Retorna o número de componentes do picker view
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
-    }
-    
-    //Retorna o número de linhas por componente do picker view
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        viewModel?.statesCount ?? 0
-    }
-    
-    //Retorna qual dado será inserido em cada linha
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        viewModel?.statesName(at: row)
-    }
-    
-    //Recupera o valor selecionado no picker view
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        viewModel?.setState(at: row)
-    }
-    
-    func selectPicture(sourceType: UIImagePickerController.SourceType) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = sourceType
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
     }
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -104,39 +89,6 @@ final class RegisterShoppingViewController: UIViewController, UIPickerViewDelega
         alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
-    }
-    
-    
-    @IBAction func save(_ sender: Any) {
-//        if product == nil {
-//            product = Product(context: context)
-//        }
-//
-//        alertText = !validateText(tfProductName.text)
-//        if !alertText {
-//            alertText = !validateText(tfProductValue.text)
-//        }
-//        alertNumber = !validateNumber(tfProductValue.text)
-//
-//        product?.name = tfProductName.text
-//        product?.value = NSDecimalNumber(string: tfProductValue.text ?? "0.0")
-//        //print(stateSelected)
-//        product?.states = stateSelected
-//        //print(product?.states?.name)
-//        product?.isCredit = swProductCard.isOn
-//        product?.image = ivProductImage.image?.jpegData(compressionQuality: 0.8)
-//
-//        do {
-//            if alertText || alertNumber {
-//                showAlert(alertText, alertNumber)
-//            } else {
-//                try context.save()
-//            }
-//
-//        } catch {
-//            print(error.localizedDescription)
-//        }
-//        navigationController?.popViewController(animated: true)
     }
     
     func showAlert(_ validateText: Bool, _ validateNumber: Bool ) {
@@ -170,8 +122,87 @@ final class RegisterShoppingViewController: UIViewController, UIPickerViewDelega
         return number.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
     
+    func fillData() {
+        tfProductName.text = viewModel?.name
+        tfProductValue.text = viewModel?.value
+        swProductCard.isOn = viewModel?.isCredit ?? false
+        if let data = viewModel?.image {
+            ivProductImage.image = UIImage(data: data)
+        }
+        pvProductState.selectRow(viewModel?.state ?? 0, inComponent: 0, animated: true)
+    }
+    
+    //MARK: - IBActions
+    @IBAction func save(_ sender: Any) {
+        alertText = !validateText(tfProductName.text)
+        if !alertText {
+            alertText = !validateText(tfProductValue.text)
+        }
+        alertNumber = !validateNumber(tfProductValue.text)
+        
+        viewModel?.set(name: tfProductName.text!)
+        viewModel?.set(value: NSDecimalNumber(string: tfProductValue.text ?? "0.0"))
+        viewModel?.set(isCredit: swProductCard.isOn)
+        viewModel?.set(image: ivProductImage.image?.jpegData(compressionQuality: 0.8))
+        
+        if alertText || alertNumber {
+            showAlert(alertText, alertNumber)
+            return
+        }
+        viewModel?.saveProduct()
+    }
 }
 
+//MARK: - ViewModel delegate
+extension RegisterShoppingViewController: RegisterShoppingViewModelDelgate {
+    func onSuccessLoadStates() {
+        DispatchQueue.main.async {
+            self.pvProductState.reloadAllComponents()
+        }
+    }
+    
+    func onSuccessSave() {
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func onSuccessLoadProduct() {
+        DispatchQueue.main.async {
+            self.fillData()
+        }
+    }
+    
+    func onError(with message: String) {
+        DispatchQueue.main.async {
+            //TODO
+        }
+    }
+}
+
+extension RegisterShoppingViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    //Retorna o número de componentes do picker view
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    //Retorna o número de linhas por componente do picker view
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        viewModel?.statesCount ?? 0
+    }
+    
+    //Retorna qual dado será inserido em cada linha
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        viewModel?.statesName(at: row)
+    }
+    
+    //Recupera o valor selecionado no picker view
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        viewModel?.setState(at: row)
+    }
+}
+
+//MARK: - Image Picker delegate
 extension RegisterShoppingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -182,6 +213,7 @@ extension RegisterShoppingViewController: UIImagePickerControllerDelegate, UINav
     }
 }
 
+//MARK: - TextField Delegate
 extension RegisterShoppingViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         

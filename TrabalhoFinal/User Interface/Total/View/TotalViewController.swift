@@ -96,8 +96,8 @@ final class TotalViewController: UIViewController {
                     var taxFromState: Decimal? = 6.0
                     
                     //Caso exista uma taxa de estado no produto, substitui a default 6.0
-                    if (product.states?.tax?.decimalValue != nil) {
-                        taxFromState = product.states?.tax?.decimalValue
+                    if (product.state?.tax?.decimalValue != nil) {
+                        taxFromState = product.state?.tax?.decimalValue
                     }
                     
                     //Calcula o total em BRL

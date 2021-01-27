@@ -9,6 +9,7 @@
 import Foundation
 
 final class ShoppingViewModel {
+    private var products: [Product] = []
     
     var productCount: Int {
         0
@@ -18,12 +19,15 @@ final class ShoppingViewModel {
         
     }
     
-    func getRegisterShoppingViewModel(at: IndexPath? = nil) -> RegisterShoppingViewModel {
-        RegisterShoppingViewModel()
+    func getRegisterShoppingViewModel(at indexPath: IndexPath? = nil) -> RegisterShoppingViewModel {
+        if let indexPath = indexPath {
+            return RegisterShoppingViewModel(id: products[indexPath.row].id, isEditing: true)
+        }
+        return RegisterShoppingViewModel(id: nil, isEditing: false)
     }
     
-    func getShoppingCellViewModel() -> ShoppingCellViewModel {
-        
+    func getShoppingCellViewModel(at indexPath: IndexPath) -> ShoppingCellViewModel {
+        ShoppingCellViewModel(product: products[indexPath.row])
     }
     
     func deleteProduct(at indexPath: IndexPath) {

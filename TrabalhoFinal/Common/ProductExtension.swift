@@ -14,7 +14,7 @@ extension Product {
         self.image = product.image
         self.isCredit = product.isCredit
         self.name = product.name
-        self.states = product.states
+        self.state = product.state
         self.value = product.value
     }
 }

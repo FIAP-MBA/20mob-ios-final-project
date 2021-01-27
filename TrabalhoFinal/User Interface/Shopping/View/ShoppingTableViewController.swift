@@ -60,7 +60,7 @@ final class ShoppingTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        cell.prepare(with: viewModel.getShoppingCellViewModel())
+        cell.prepare(with: viewModel.getShoppingCellViewModel(at: indexPath))
         
         return cell
     }

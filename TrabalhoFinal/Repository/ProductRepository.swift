@@ -13,6 +13,7 @@ protocol ProductRepositoryProtocol {
     var delegate: ProductRepositoryDelegate? { get set }
     
     func loadProducts()
+    func loadProduct(by id: UUID)
     func deleteProduct(by id: UUID)
     func save(product: Product)
     func update(product: Product)
@@ -31,34 +32,41 @@ final class ProductRepository: ProductRepositoryProtocol {
     func loadProducts() {
         if let products = getLocal() {
             delegate?.productRepository(didUpdateProducts: products)
-            return
+        }
+    }
+    
+    func loadProduct(by id: UUID) {
+        if let products = getLocal() {
+            if let index = products.firstIndex(where: { $0.id == id }) {
+                delegate?.productRepository(didUpdateProduct: products[index])
+                return
+            }
+            delegate?.productRepository(didUpdateError: ProductRepositoryError.loadSingleData)
         }
     }
     
     func save(product: Product) {
-        
+        persistLocal(product: product)
     }
     
     func update(product: Product) {
-        
+        persistLocal(product: product)
     }
     
     func deleteProduct(by id: UUID) {
-        
+        deleteLocal(by: id)
     }
 
     //MARK: - Core data methods
-    private func deleteLocal(by id: UUID? = nil) {
+    private func deleteLocal(by id: UUID) {
         guard let context = context else { return }
         do {
             let fetchedRequest: NSFetchRequest<Product> = Product.fetchRequest()
             let cdProduct = try context.fetch(fetchedRequest)
-            if let id = id {
-                if let index = cdProduct.firstIndex(where: { $0.id == id }) {
-                    context.delete(cdProduct[index])
-                    try context.save()
-                    delegate?.productRepository(wasProductDeleted: true)
-                }
+            if let index = cdProduct.firstIndex(where: { $0.id == id }) {
+                context.delete(cdProduct[index])
+                try context.save()
+                delegate?.productRepository(wasProductDeleted: true)
             }
         } catch {
             delegate?.productRepository(didUpdateError: ProductRepositoryError.deleteData)
@@ -105,6 +113,8 @@ protocol ProductRepositoryDelegate: AnyObject {
     
     func productRepository(didUpdateProducts: [Product])
     
+    func productRepository(didUpdateProduct: Product)
+    
     func productRepository(wasProductDeleted: Bool)
     
     func productRepository(wasProductSaved: Bool)
@@ -112,6 +122,10 @@ protocol ProductRepositoryDelegate: AnyObject {
 
 extension ProductRepositoryDelegate {
     func productRepository(didUpdateProducts: [Product]) {
+        /* Not implemented */
+    }
+    
+    func productRepository(didUpdateProduct: Product) {
         /* Not implemented */
     }
     
