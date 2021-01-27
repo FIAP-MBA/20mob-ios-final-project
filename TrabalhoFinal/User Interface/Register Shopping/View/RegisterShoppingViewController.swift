@@ -102,8 +102,7 @@ final class RegisterShoppingViewController: UIViewController {
             text = "Valores incorretos, por gentileza, verifique se há apenas números no campo de valor e se esqueceu de preencher algum outro campo!"
         }
         
-        let alertController = UIAlertController(title: "ComprasUSA", message:
-                                                    text, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "ComprasUSA", message: text, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         
         self.present(alertController, animated: true, completion: nil)
@@ -180,6 +179,7 @@ extension RegisterShoppingViewController: RegisterShoppingViewModelDelgate {
     }
 }
 
+//MARK: - UIPickerView delegate
 extension RegisterShoppingViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     //Retorna o número de componentes do picker view
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

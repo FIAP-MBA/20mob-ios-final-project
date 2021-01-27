@@ -15,7 +15,7 @@ protocol ProductRepositoryProtocol {
     func loadProducts()
     func loadProduct(by id: UUID)
     func deleteProduct(by id: UUID)
-    func save(product: Product)
+    func save(name: String?, image: Data?, isCredit: Bool, value: NSDecimalNumber?, state: State?)
     func update(product: Product)
 }
 
@@ -45,8 +45,8 @@ final class ProductRepository: ProductRepositoryProtocol {
         }
     }
     
-    func save(product: Product) {
-        persistLocal(product: product)
+    func save(name: String?, image: Data?, isCredit: Bool, value: NSDecimalNumber?, state: State?) {
+        persistLocal(name, image, isCredit, value, state)
     }
     
     func update(product: Product) {
@@ -87,19 +87,24 @@ final class ProductRepository: ProductRepositoryProtocol {
         }
     }
     
-    private func persistLocal(product: Product) {
+    private func persistLocal(product: Product? = nil, _ name: String? = nil, _ image: Data? = nil, _ isCredit: Bool = false, _ value: NSDecimalNumber? = nil, _ state: State? = nil) {
         guard let context = context else { return }
         do {
             let fetchedRequest: NSFetchRequest<Product> = Product.fetchRequest()
             let cdProducts = try context.fetch(fetchedRequest)
-            guard let index = cdProducts.firstIndex(where: { $0.id == product.id }) else {
+            guard let index = cdProducts.firstIndex(where: { $0.id == product?.id }) else {
                 let cdProduct = Product(context: context)
-                cdProduct.addProductData(product)
+                cdProduct.name = name
+                cdProduct.image = image
+                cdProduct.isCredit = isCredit
+                cdProduct.value = value
+                cdProduct.state = state
+                cdProduct.id = UUID()
                 try context.save()
                 delegate?.productRepository(wasProductSaved: true)
                 return
             }
-            cdProducts[index].addProductData(product)
+            cdProducts[index].addProductData(product!)
             try context.save()
             delegate?.productRepository(wasProductSaved: true)
         } catch {

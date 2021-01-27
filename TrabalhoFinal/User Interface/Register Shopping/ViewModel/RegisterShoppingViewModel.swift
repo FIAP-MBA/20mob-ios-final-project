@@ -16,13 +16,19 @@ protocol RegisterShoppingViewModelDelgate: AnyObject {
 }
 
 final class RegisterShoppingViewModel {
+    //MARK: - Properties
     private var productRepository: ProductRepositoryProtocol
     private var stateRepository: StateRepositoryProtocol
     private let id: UUID?
     private var product: Product?
     private var states: [State] = []
-    private var selectedState: State?
     let isEditing: Bool
+    
+    private var newProductName: String = ""
+    private var newProductImage: Data?
+    private var newProductIsCredit: Bool = false
+    private var newProductValue: NSDecimalNumber?
+    private var selectedState: State?
     
     weak var delegate: RegisterShoppingViewModelDelgate?
     
@@ -58,6 +64,7 @@ final class RegisterShoppingViewModel {
         self.stateRepository.delegate = self
     }
     
+    //MARK: - Methods
     func loadData() {
         stateRepository.loadStates()
         if isEditing {
@@ -74,23 +81,49 @@ final class RegisterShoppingViewModel {
     }
     
     func set(name: String) {
-        
+        if isEditing {
+            product?.name = name
+            return
+        }
+        newProductName = name
     }
     
     func set(value: NSDecimalNumber) {
-        
+        if isEditing {
+            product?.value = value
+            return
+        }
+        newProductValue = value
     }
     
     func set(isCredit: Bool) {
-        
+        if isEditing {
+            product?.isCredit = isCredit
+            return
+        }
+        newProductIsCredit = isCredit
     }
     
     func set(image: Data?) {
-        
+        if isEditing {
+            product?.image = image
+            return
+        }
+        newProductImage = image
     }
     
     func saveProduct() {
-        
+        if isEditing {
+            productRepository.update(product: product!)
+            return
+        }
+        productRepository.save(
+            name: newProductName,
+            image: newProductImage,
+            isCredit: newProductIsCredit,
+            value: newProductValue,
+            state: selectedState
+        )
     }
 }
 
