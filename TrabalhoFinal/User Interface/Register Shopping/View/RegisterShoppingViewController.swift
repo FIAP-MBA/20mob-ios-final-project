@@ -62,6 +62,11 @@ final class RegisterShoppingViewController: UIViewController {
         present(imagePicker, animated: true, completion: nil)
     }
     
+    private func showError(with message: String) {
+        let alert = AlertUtil.errorAlert(title: "Atenção", message: message)
+        present(alert, animated: true, completion: nil)
+    }
+    
     @objc private func tapDone() {
         tfProductValue.resignFirstResponder()
     }
@@ -90,6 +95,8 @@ final class RegisterShoppingViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
+    
     
     func showAlert(_ validateText: Bool, _ validateNumber: Bool ) {
         var text: String = ""
@@ -174,7 +181,7 @@ extension RegisterShoppingViewController: RegisterShoppingViewModelDelgate {
     
     func onError(with message: String) {
         DispatchQueue.main.async {
-            //TODO
+            self.showError(with: message)
         }
     }
 }

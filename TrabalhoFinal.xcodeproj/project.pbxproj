@@ -30,6 +30,7 @@
 		59CEACCF25C1B3EB001F2584 /* ProductExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CEACCE25C1B3EB001F2584 /* ProductExtension.swift */; };
 		59CEACD525C1E10A001F2584 /* StateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CEACD425C1E10A001F2584 /* StateRepository.swift */; };
 		59CEACD825C1E343001F2584 /* StateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CEACD725C1E343001F2584 /* StateExtension.swift */; };
+		59CEACDB25C1F6C7001F2584 /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CEACDA25C1F6C7001F2584 /* AlertUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		59CEACCE25C1B3EB001F2584 /* ProductExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductExtension.swift; sourceTree = "<group>"; };
 		59CEACD425C1E10A001F2584 /* StateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateRepository.swift; sourceTree = "<group>"; };
 		59CEACD725C1E343001F2584 /* StateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateExtension.swift; sourceTree = "<group>"; };
+		59CEACDA25C1F6C7001F2584 /* AlertUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				59CEACCE25C1B3EB001F2584 /* ProductExtension.swift */,
 				59CEACB225C19C22001F2584 /* Constants.swift */,
 				59CEACD725C1E343001F2584 /* StateExtension.swift */,
+				59CEACDA25C1F6C7001F2584 /* AlertUtil.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				59CEACC525C19E36001F2584 /* RegisterShoppingViewModel.swift in Sources */,
 				1108928E25BA3901002951D8 /* UIViewControllerExtension.swift in Sources */,
 				1108928D25BA3901002951D8 /* ShoppingTableViewController.swift in Sources */,
+				59CEACDB25C1F6C7001F2584 /* AlertUtil.swift in Sources */,
 				59CEACD525C1E10A001F2584 /* StateRepository.swift in Sources */,
 				59CEACB325C19C22001F2584 /* Constants.swift in Sources */,
 				59CEACBB25C19DAB001F2584 /* TotalViewModel.swift in Sources */,

@@ -23,6 +23,16 @@ final class ShoppingTableViewController: UITableViewController {
         setupData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? RegisterShoppingViewController {
+            if segue.identifier == "edit" {
+                vc.viewModel = viewModel.getRegisterShoppingViewModel(at: tableView.indexPathForSelectedRow)
+                return
+            }
+            vc.viewModel = viewModel.getRegisterShoppingViewModel()
+        }
+    }
+    
     //MARK: - Methods
     private func setupView() {
         //Definindo o texto e alinhamento da label
@@ -34,14 +44,9 @@ final class ShoppingTableViewController: UITableViewController {
         viewModel.loadData()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? RegisterShoppingViewController {
-            if segue.identifier == "edit" {
-                vc.viewModel = viewModel.getRegisterShoppingViewModel(at: tableView.indexPathForSelectedRow)
-                return
-            }
-            vc.viewModel = viewModel.getRegisterShoppingViewModel()
-        }
+    private func showError(with message: String) {
+        let alert = AlertUtil.errorAlert(title: "Atenção", message: message)
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Table view data source
@@ -73,3 +78,17 @@ final class ShoppingTableViewController: UITableViewController {
     }
 }
 
+//MARK: - ViewModel Delegate
+extension ShoppingTableViewController: ShoppingViewModelDelegate {
+    func onSuccess() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func onError(with message: String) {
+        DispatchQueue.main.async {
+            self.onError(with: message)
+        }
+    }
+}

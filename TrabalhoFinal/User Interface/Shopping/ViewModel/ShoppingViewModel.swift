@@ -8,15 +8,30 @@
 
 import Foundation
 
+protocol ShoppingViewModelDelegate: AnyObject {
+    func onSuccess()
+    func onError(with message: String)
+}
+
 final class ShoppingViewModel {
+    //MARK: - Properties
     private var products: [Product] = []
+    private var repository: ProductRepositoryProtocol
+    
+    weak var delegate: ShoppingViewModelDelegate?
     
     var productCount: Int {
         0
     }
     
+    init(_ repository: ProductRepositoryProtocol = ProductRepository()) {
+        self.repository = repository
+        self.repository.delegate = self
+    }
+    
+    //MARK: - Methods
     func loadData() {
-        
+        repository.loadProducts()
     }
     
     func getRegisterShoppingViewModel(at indexPath: IndexPath? = nil) -> RegisterShoppingViewModel {
@@ -31,6 +46,22 @@ final class ShoppingViewModel {
     }
     
     func deleteProduct(at indexPath: IndexPath) {
-        
+        repository.deleteProduct(by: products[indexPath.row].id!)
+    }
+}
+
+//MARK: - Product Repository Delegate
+extension ShoppingViewModel: ProductRepositoryDelegate {
+    func productRepository(didUpdateError: Error) {
+        delegate?.onError(with: didUpdateError.localizedDescription)
+    }
+    
+    func productRepository(didUpdateProducts: [Product]) {
+        products = didUpdateProducts
+        delegate?.onSuccess()
+    }
+    
+    func productRepository(wasProductDeleted: Bool) {
+        loadData()
     }
 }
