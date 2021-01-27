@@ -7,54 +7,40 @@
 //
 
 import UIKit
-import CoreData
 
-class ShoppingTableViewController: UITableViewController {
+final class ShoppingTableViewController: UITableViewController {
     
+    //MARK: - Properties
     //Criando label que será a mensagem caso não tenham compras cadastradas
-    var label = UILabel(frame: CGRect(x: 0, y:0, width: 200, height: 44))
+    let label = UILabel(frame: CGRect(x: 0, y:0, width: 200, height: 44))
+    var viewModel = ShoppingViewModel()
     
-    //Criando o objeto que fará requisições ao contexto, realizando solicitações ao entities criados
-    var fetchedResultController: NSFetchedResultsController<Product>!
-    
+    //MARK: - Super Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        setupView()
+        setupData()
+    }
+    
+    //MARK: - Methods
+    private func setupView() {
         //Definindo o texto e alinhamento da label
         label.text = "Sua lista está vazia!"
         label.textAlignment = .center
-        
-        //Carregando a lista de compras
-        loadProducts()
     }
     
-    func loadProducts() {
-        //Criando um objeto de requisição que será feita através da fetchedResultController
-        //Essa request pode ser criada a partir do método da própria model
-        let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
-        
-        //Definindo o tipo de ordenação da busca. Aqui, definimos ordenação ascendente por name
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true )
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        //Instanciando NSFetchedResultsController, passando as informações de fetchRequest
-        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        //Definimos nossa ShoppingTableViewController como delegate da fetchedRèsultController
-        fetchedResultController.delegate = self
-        do {
-            //Executando a requisição
-            try fetchedResultController.performFetch()
-        } catch {
-            print(error.localizedDescription)
-        }
+    private func setupData() {
+        viewModel.loadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "edit" {
-            if let vc = segue.destination as? RegisterShoppingViewController {
-                vc.product = fetchedResultController.object(at: tableView.indexPathForSelectedRow!)
+        if let vc = segue.destination as? RegisterShoppingViewController {
+            if segue.identifier == "edit" {
+                vc.viewModel = viewModel.getRegisterShoppingViewModel(at: tableView.indexPathForSelectedRow)
+                return
             }
+            vc.viewModel = viewModel.getRegisterShoppingViewModel()
         }
     }
     
@@ -65,55 +51,25 @@ class ShoppingTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        //Caso existam objetos recuperados pela fetchedResultController, preparamos a tableView
-        if let count = fetchedResultController.fetchedObjects?.count {
-            tableView.backgroundView = count == 0 ? label : nil
-            return count
-        } else {
-            tableView.backgroundView = label
-            return 0
-        }
-        
+        tableView.backgroundView = viewModel.productCount == 0 ? label : nil
+        return viewModel.productCount
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as?
-                ShoppingTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ShoppingTableViewCell else {
             return UITableViewCell()
         }
         
-        //Recuperando da fetchedResultController o produto referente à célula
-        let product  = fetchedResultController.object(at: indexPath)
+        cell.prepare(with: viewModel.getShoppingCellViewModel())
         
-        cell.prepare(with: product)
         return cell
     }
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let product = fetchedResultController.object(at: indexPath)
-            
-            //Excluindo o produto do contexto
-            context.delete(product)
-            
-            do {
-                //Persistindo a exclusão
-                try context.save()
-            } catch {
-                print(error.localizedDescription)
-            }
+            viewModel.deleteProduct(at: indexPath)
         }
-    }
-}
-
-//Implementando o protocolo NSFetchedResultsControllerDelegate
-extension ShoppingTableViewController: NSFetchedResultsControllerDelegate {
-    
-    //Método que é chamado sempre que uma alteração é feita no contexto
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.reloadData()
     }
 }
 

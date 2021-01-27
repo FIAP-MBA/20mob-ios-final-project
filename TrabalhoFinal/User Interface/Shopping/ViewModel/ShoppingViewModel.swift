@@ -10,4 +10,23 @@ import Foundation
 
 final class ShoppingViewModel {
     
+    var productCount: Int {
+        0
+    }
+    
+    func loadData() {
+        
+    }
+    
+    func getRegisterShoppingViewModel(at: IndexPath? = nil) -> RegisterShoppingViewModel {
+        RegisterShoppingViewModel()
+    }
+    
+    func getShoppingCellViewModel() -> ShoppingCellViewModel {
+        
+    }
+    
+    func deleteProduct(at indexPath: IndexPath) {
+        
+    }
 }

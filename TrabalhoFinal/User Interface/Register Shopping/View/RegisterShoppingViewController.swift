@@ -20,10 +20,7 @@ final class RegisterShoppingViewController: UIViewController, UIPickerViewDelega
     @IBOutlet weak var btProductSave: UIButton!
     
     //MARK: - Properties
-    var product: Product?
-    var fetchedResultController: NSFetchedResultsController<State>!
-    var statesArray: [State] = []
-    var stateSelected: State?
+    var viewModel: RegisterShoppingViewModel?
     var alertText: Bool = false
     var alertNumber: Bool = false
     
@@ -31,111 +28,54 @@ final class RegisterShoppingViewController: UIViewController, UIPickerViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Carregando o vetor de estados
-        loadStates()
-        
+        setupView()
+        setupData()
+    }
+    
+    //MARK: - Methods
+    private func setupView() {
         //Vinculando o UIPickerView a esta classe
         self.pvProductState.delegate = self
         self.pvProductState.dataSource = self
         
-        //print(pvProductState.numberOfRows(inComponent: 0))
-        
-        if let product = product {
-            tfProductName.text = product.name
-            tfProductValue.text = "\(product.value ?? 0)"
-            swProductCard.isOn = product.isCredit
-            
-            print("Estado do produto a ser alterado: " + product.states!.name!)
-            
-            let stateRow: Int? = statesArray.firstIndex(of: product.states!)
-            print("stateRow: \(stateRow!)")
-            pvProductState.selectRow(stateRow!, inComponent: 0, animated: true)
-            
-            if let data = product.image {
-                ivProductImage.image = UIImage(data: data)
-            }
-            btProductSave.setTitle("Alterar", for: .normal)
-        }
-        
         // Do any additional setup after loading the view.
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         ivProductImage.isUserInteractionEnabled = true
-        ivProductImage.addGestureRecognizer(tapGestureRecognizer)
+        ivProductImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
         
         tfProductName.delegate = self
         tfProductValue.delegate = self
-        
     }
     
-    //MARK: - Methods
-    @objc func tapDone() {
-        //print("tapped Done")
+    private func setupData() {
+        viewModel?.loadData()
+    }
+    
+    @objc private func tapDone() {
         tfProductValue.resignFirstResponder()
     }
     
-    @objc func tapCancel() {
-        //print("tapped cancel")
+    @objc private func tapCancel() {
         tfProductValue.resignFirstResponder()
     }
     
     //Retorna o número de componentes do picker view
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        1
     }
     
     //Retorna o número de linhas por componente do picker view
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return statesArray.count
+        viewModel?.statesCount ?? 0
     }
     
     //Retorna qual dado será inserido em cada linha
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return statesArray[row].name
+        viewModel?.statesName(at: row)
     }
     
     //Recupera o valor selecionado no picker view
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // This method is triggered whenever the user makes a change to the picker selection.
-        // The parameter named row and component represents what was selected.
-        //print(row)
-        //print(statesArray[row])
-        stateSelected = statesArray[row]
-    }
-    
-    
-    func loadStates() {
-        //Criando um objeto de requisição que será feita através da fetchedResultController
-        //Essa request pode ser criada a partir do método da própria model
-        let fetchRequest: NSFetchRequest<State> = State.fetchRequest()
-        
-        //Definindo o tipo de ordenação da busca. Aqui, definimos ordenação ascendente por name
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true )
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        //Instanciando NSFetchedResultsController, passando as informações de fetchRequest
-        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        //Definimos nossa ShoppingViewController como delegate da fetchedRèsultController
-        fetchedResultController.delegate = self
-        do {
-            //Executando a requisição
-            statesArray = try context.fetch(fetchRequest)
-            //print(statesArray)
-            try fetchedResultController.performFetch()
-        } catch {
-            print(error.localizedDescription)
-        }
-        
-        if let count = fetchedResultController.fetchedObjects?.count{
-            //Caso existam estados
-            if count > 0 && stateSelected == nil {
-                //print("Selecionou estado default")
-                
-                //Seleciona o primeiro estado por padrão após carregar o
-                stateSelected = statesArray[0]
-            }
-        }
-        
+        viewModel?.setState(at: row)
     }
     
     func selectPicture(sourceType: UIImagePickerController.SourceType) {
@@ -146,7 +86,6 @@ final class RegisterShoppingViewController: UIViewController, UIPickerViewDelega
     }
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        // Your action
         let alert = UIAlertController(title: "Selecionar poster", message: "De onde você quer escolher o poster?", preferredStyle: .actionSheet)
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -169,36 +108,35 @@ final class RegisterShoppingViewController: UIViewController, UIPickerViewDelega
     
     
     @IBAction func save(_ sender: Any) {
-        
-        if product == nil {
-            product = Product(context: context)
-        }
-        
-        alertText = !validateText(tfProductName.text)
-        if !alertText {
-            alertText = !validateText(tfProductValue.text)
-        }
-        alertNumber = !validateNumber(tfProductValue.text)
-        
-        product?.name = tfProductName.text
-        product?.value = NSDecimalNumber(string: tfProductValue.text ?? "0.0")
-        //print(stateSelected)
-        product?.states = stateSelected
-        //print(product?.states?.name)
-        product?.isCredit = swProductCard.isOn
-        product?.image = ivProductImage.image?.jpegData(compressionQuality: 0.8)
-        
-        do {
-            if alertText || alertNumber {
-                showAlert(alertText, alertNumber)
-            } else {
-                try context.save()
-            }
-            
-        } catch {
-            print(error.localizedDescription)
-        }
-        navigationController?.popViewController(animated: true)
+//        if product == nil {
+//            product = Product(context: context)
+//        }
+//
+//        alertText = !validateText(tfProductName.text)
+//        if !alertText {
+//            alertText = !validateText(tfProductValue.text)
+//        }
+//        alertNumber = !validateNumber(tfProductValue.text)
+//
+//        product?.name = tfProductName.text
+//        product?.value = NSDecimalNumber(string: tfProductValue.text ?? "0.0")
+//        //print(stateSelected)
+//        product?.states = stateSelected
+//        //print(product?.states?.name)
+//        product?.isCredit = swProductCard.isOn
+//        product?.image = ivProductImage.image?.jpegData(compressionQuality: 0.8)
+//
+//        do {
+//            if alertText || alertNumber {
+//                showAlert(alertText, alertNumber)
+//            } else {
+//                try context.save()
+//            }
+//
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//        navigationController?.popViewController(animated: true)
     }
     
     func showAlert(_ validateText: Bool, _ validateNumber: Bool ) {
@@ -241,17 +179,6 @@ extension RegisterShoppingViewController: UIImagePickerControllerDelegate, UINav
             ivProductImage.image = image
         }
         dismiss(animated: true, completion: nil)
-    }
-}
-
-//Implementando o protocolo NSFetchedResultsControllerDelegate
-extension RegisterShoppingViewController: NSFetchedResultsControllerDelegate {
-    
-    //Método que é chamado sempre que uma alteração é feita no contexto
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        loadStates()
-        //guard let states = fetchedResultController.fetchedObjects else { return }
-        pvProductState.reloadAllComponents()
     }
 }
 

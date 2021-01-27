@@ -10,4 +10,19 @@ import Foundation
 
 final class RegisterShoppingViewModel {
     
+    var statesCount: Int {
+        0
+    }
+    
+    func loadData() {
+        
+    }
+    
+    func statesName(at row: Int) -> String {
+        ""
+    }
+    
+    func setState(at row: Int) {
+        
+    }
 }

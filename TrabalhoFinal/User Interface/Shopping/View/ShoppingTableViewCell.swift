@@ -15,12 +15,12 @@ class ShoppingTableViewCell: UITableViewCell {
     @IBOutlet weak var ivProductImage: UIImageView!
     
     
-    func prepare(with product: Product) {
-        lbProductName.text = product.name
-        lbProductValue.text = "\(product.value ?? 0.00)"
+    func prepare(with viewModel: ShoppingCellViewModel) {
+        lbProductName.text = viewModel.name
+        lbProductValue.text = viewModel.value
         
         //Se houver imagem cadastrada, recuperamos e geramos a UIImage baseado no dado
-        if let data = product.image {
+        if let data = viewModel.image {
             ivProductImage.image = UIImage(data: data)
         }
     }
