@@ -10,7 +10,6 @@ import UIKit
 
 class ShoppingTableViewCell: UITableViewCell {
     
-    
     @IBOutlet weak var lbProductName: UILabel!
     @IBOutlet weak var lbProductValue: UILabel!
     @IBOutlet weak var ivProductImage: UIImageView!

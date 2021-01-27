@@ -51,17 +51,14 @@ class ShoppingTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "edit" {
             if let vc = segue.destination as? RegisterShoppingViewController {
                 vc.product = fetchedResultController.object(at: tableView.indexPathForSelectedRow!)
             }
         }
-        
     }
     
     // MARK: - Table view data source
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -93,16 +90,6 @@ class ShoppingTableViewController: UITableViewController {
         return cell
     }
     
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -118,9 +105,7 @@ class ShoppingTableViewController: UITableViewController {
                 print(error.localizedDescription)
             }
         }
-        
     }
-    
 }
 
 //Implementando o protocolo NSFetchedResultsControllerDelegate

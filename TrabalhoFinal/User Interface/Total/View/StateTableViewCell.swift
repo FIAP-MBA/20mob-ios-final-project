@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class StateTableViewCell: UITableViewCell{
     
     @IBOutlet weak var lbState: UILabel!

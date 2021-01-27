@@ -10,22 +10,21 @@ import UIKit
 import CoreData
 
 
-class TotalViewController: UIViewController {
+final class TotalViewController: UIViewController {
     
+    //MARK: - IBOutlets
     @IBOutlet weak var lbTotalUSD: UILabel!
     @IBOutlet weak var lbTotalBRL: UILabel!
     
-    
+    //MARK: - Properties
     var totalUSD: Decimal = 0.0
     var totalBRL: Decimal = 0.0
-    
     var exchangeRate: Decimal? = 5.0
     var percIOF:Decimal? = 6.38
-    
     var fetchedResultController: NSFetchedResultsController<Product>!
-    
     let ud = UserDefaults.standard
     
+    //MARK: - Super Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +50,7 @@ class TotalViewController: UIViewController {
         calculateTotals()
     }
     
+    //MARK: - Methods
     func loadProducts() {
         
         let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()

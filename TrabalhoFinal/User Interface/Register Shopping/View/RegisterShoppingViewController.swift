@@ -9,8 +9,9 @@
 import UIKit
 import CoreData
 
-class RegisterShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+final class RegisterShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    //MARK: - IBOutlet
     @IBOutlet weak var tfProductName: UITextField!
     @IBOutlet weak var pvProductState: UIPickerView!
     @IBOutlet weak var tfProductValue: UITextField!
@@ -18,6 +19,7 @@ class RegisterShoppingViewController: UIViewController, UIPickerViewDelegate, UI
     @IBOutlet weak var ivProductImage: UIImageView!
     @IBOutlet weak var btProductSave: UIButton!
     
+    //MARK: - Properties
     var product: Product?
     var fetchedResultController: NSFetchedResultsController<State>!
     var statesArray: [State] = []
@@ -25,6 +27,7 @@ class RegisterShoppingViewController: UIViewController, UIPickerViewDelegate, UI
     var alertText: Bool = false
     var alertNumber: Bool = false
     
+    //MARK: - Super Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,6 +67,7 @@ class RegisterShoppingViewController: UIViewController, UIPickerViewDelegate, UI
         
     }
     
+    //MARK: - Methods
     @objc func tapDone() {
         //print("tapped Done")
         tfProductValue.resignFirstResponder()
@@ -141,8 +145,7 @@ class RegisterShoppingViewController: UIViewController, UIPickerViewDelegate, UI
         present(imagePicker, animated: true, completion: nil)
     }
     
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         // Your action
         let alert = UIAlertController(title: "Selecionar poster", message: "De onde você quer escolher o poster?", preferredStyle: .actionSheet)
         
@@ -259,7 +262,3 @@ extension RegisterShoppingViewController: UITextFieldDelegate {
         return true
     }
 }
-
-
-
-

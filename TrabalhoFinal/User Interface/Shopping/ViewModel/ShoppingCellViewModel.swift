@@ -1,5 +1,5 @@
 //
-//  Constants.swift
+//  ShoppingCellViewModel.swift
 //  TrabalhoFinal
 //
 //  Created by Valmir Junior on 27/01/21.
@@ -8,7 +8,6 @@
 
 import Foundation
 
-enum UserDefaultKeys: String {
-    case dolar = "exchangeRate"
-    case iof = "percIOF"
+final class ShoppingCellViewModel {
+    
 }
