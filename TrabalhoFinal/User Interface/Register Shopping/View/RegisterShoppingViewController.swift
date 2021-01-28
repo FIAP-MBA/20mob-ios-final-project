@@ -55,7 +55,7 @@ final class RegisterShoppingViewController: UIViewController {
         viewModel?.loadData()
     }
     
-    func selectPicture(sourceType: UIImagePickerController.SourceType) {
+    private func selectPicture(sourceType: UIImagePickerController.SourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = sourceType
         imagePicker.delegate = self
@@ -75,7 +75,7 @@ final class RegisterShoppingViewController: UIViewController {
         tfProductValue.resignFirstResponder()
     }
     
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+    @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         let alert = UIAlertController(title: "Selecionar poster", message: "De onde você quer escolher o poster?", preferredStyle: .actionSheet)
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -96,9 +96,7 @@ final class RegisterShoppingViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    
-    
-    func showAlert(_ validateText: Bool, _ validateNumber: Bool ) {
+    private func showAlert(_ validateText: Bool, _ validateNumber: Bool ) {
         var text: String = ""
         
         if validateText && !validateNumber {
@@ -115,7 +113,7 @@ final class RegisterShoppingViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func validateText(_ text: String?) -> Bool {
+    private func validateText(_ text: String?) -> Bool {
         guard let message = text else { return false }
         if message == "" || message.isEmpty {
             return false
@@ -123,12 +121,12 @@ final class RegisterShoppingViewController: UIViewController {
         return true
     }
     
-    func validateNumber(_ text: String?) -> Bool {
+    private func validateNumber(_ text: String?) -> Bool {
         guard let number = text else { return false }
         return number.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
     
-    func fillData() {
+    private func fillData() {
         tfProductName.text = viewModel?.name
         tfProductValue.text = viewModel?.value
         swProductCard.isOn = viewModel?.isCredit ?? false

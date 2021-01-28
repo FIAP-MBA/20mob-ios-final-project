@@ -175,6 +175,7 @@
 		59CEACA425C1004E001F2584 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				59CEACC725C1A08C001F2584 /* StateViewModel.swift */,
 				59CEACBD25C19DCC001F2584 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
@@ -184,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				1108929425BA4553002951D8 /* SettingsViewController.swift */,
+				1108929625BA472A002951D8 /* StateTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -234,7 +236,6 @@
 			isa = PBXGroup;
 			children = (
 				59CEACBA25C19DAB001F2584 /* TotalViewModel.swift */,
-				59CEACC725C1A08C001F2584 /* StateViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -243,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				1108929825BA4AD8002951D8 /* TotalViewController.swift */,
-				1108929625BA472A002951D8 /* StateTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -495,6 +495,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TrabalhoFinal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -512,6 +513,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TrabalhoFinal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

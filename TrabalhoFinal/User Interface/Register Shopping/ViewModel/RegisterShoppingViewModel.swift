@@ -77,7 +77,7 @@ final class RegisterShoppingViewModel {
     }
     
     func setState(at row: Int) {
-        selectedState = states[row]
+        selectedState = states.count > 0 ? states[row] : nil
     }
     
     func set(name: String) {
