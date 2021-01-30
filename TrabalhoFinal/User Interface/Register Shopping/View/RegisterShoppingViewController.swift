@@ -17,6 +17,7 @@ final class RegisterShoppingViewController: UIViewController {
     @IBOutlet weak var swProductCard: UISwitch!
     @IBOutlet weak var ivProductImage: UIImageView!
     @IBOutlet weak var btProductSave: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     //MARK: - Properties
     var viewModel: RegisterShoppingViewModel?
@@ -32,6 +33,9 @@ final class RegisterShoppingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         setupData()
     }
@@ -128,7 +132,7 @@ final class RegisterShoppingViewController: UIViewController {
     
     private func validateNumber(_ text: String?) -> Bool {
         guard let number = text else { return false }
-        return number.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
+        return Double(number) != nil
     }
     
     private func fillData() {
@@ -139,6 +143,19 @@ final class RegisterShoppingViewController: UIViewController {
             ivProductImage.image = UIImage(data: data)
         }
         pvProductState.selectRow(viewModel?.state ?? 0, inComponent: 0, animated: true)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        
+        scrollView.contentInset.bottom = keyboardFrame.size.height - view.safeAreaInsets.bottom
+        scrollView.verticalScrollIndicatorInsets.bottom = keyboardFrame.size.height - view.safeAreaInsets.bottom
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset.bottom = 0
+        scrollView.verticalScrollIndicatorInsets.bottom = 0
     }
     
     //MARK: - IBActions

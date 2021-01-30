@@ -18,6 +18,7 @@ final class SettingsViewController: UIViewController {
     @IBOutlet weak var tfDolar1: UITextField!
     @IBOutlet weak var tfIof1: UITextField!
     @IBOutlet weak var tvTax: UITableView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     //MARK: - Super Methods
     override func viewDidLoad() {
@@ -29,6 +30,9 @@ final class SettingsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         tfDolar1.text = viewModel.dolar
         tfIof1.text = viewModel.iof
@@ -119,6 +123,19 @@ final class SettingsViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
         
         present(alert, animated: true, completion: nil)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        
+        scrollView.contentInset.bottom = keyboardFrame.size.height - view.safeAreaInsets.bottom
+        scrollView.verticalScrollIndicatorInsets.bottom = keyboardFrame.size.height - view.safeAreaInsets.bottom
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset.bottom = 0
+        scrollView.verticalScrollIndicatorInsets.bottom = 0
     }
     
     //MARK: - IBActions
