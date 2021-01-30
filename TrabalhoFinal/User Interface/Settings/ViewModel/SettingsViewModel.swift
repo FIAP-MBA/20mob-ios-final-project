@@ -22,10 +22,10 @@ final class SettingsViewModel {
     weak var delegate: SettingsViewModelDelegate?
     
     var dolar: String? {
-        ud.string(forKey: UserDefaultKeys.dolar.rawValue)
+        ud.string(forKey: UserDefaultKeys.dolar.rawValue) ?? "5.65"
     }
     var iof: String? {
-        ud.string(forKey: UserDefaultKeys.iof.rawValue)
+        ud.string(forKey: UserDefaultKeys.iof.rawValue) ?? "6.38
     }
     var statesCount: Int {
         states.count

@@ -20,7 +20,7 @@
 			<key>Key</key>
 			<string>exchangeRate</string>
 			<key>DefaultValue</key>
-			<string></string>
+			<string>5.65</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>
@@ -37,10 +37,10 @@
 			<string>I.O.F. (%)</string>
 			<key>Key</key>
 			<string>percIOF</string>
-			<key>DefaultValue</key>
-			<false/>
 			<key>KeyboardType</key>
 			<string>Alphabet</string>
+			<key>DefaultValue</key>
+			<string>6.38</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>AutocapitalizationType</key>
