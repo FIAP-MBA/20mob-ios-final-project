@@ -73,7 +73,7 @@ final class SettingsViewController: UIViewController {
         if number == "" || number.isEmpty {
             return false
         }
-        return number.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
+        return Double(number) != nil
     }
     
     private func validateText2(_ text: String?) -> Bool {

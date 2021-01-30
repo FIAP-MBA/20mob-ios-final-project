@@ -22,6 +22,11 @@ final class TotalViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         setupData()
     }
     

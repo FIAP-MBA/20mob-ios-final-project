@@ -150,8 +150,8 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="v4n-Vi-HDZ">
-                                                <rect key="frame" x="8" y="77" width="398" height="295"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Itens" translatesAutoresizingMaskIntoConstraints="NO" id="v4n-Vi-HDZ">
+                                                <rect key="frame" x="8" y="74" width="398" height="300"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="300" id="Ddg-m4-OPv"/>
                                                 </constraints>
@@ -304,16 +304,21 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="500" id="Q0d-ED-l4H"/>
                                                 </constraints>
+                                                <view key="tableFooterView" contentMode="scaleToFill" id="Y4I-hE-Cgl">
+                                                    <rect key="frame" x="0.0" y="101" width="394" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                </view>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="7SZ-qX-yga" customClass="StateTableViewCell" customModule="TrabalhoFinal" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="394" height="45.666667938232422"/>
+                                                        <rect key="frame" x="0.0" y="28" width="394" height="45"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7SZ-qX-yga" id="Jxi-8u-O7B">
-                                                            <rect key="frame" x="0.0" y="0.0" width="394" height="45.666667938232422"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="394" height="45"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Imposto" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymC-fv-dPQ">
-                                                                    <rect key="frame" x="322" y="12.000000000000002" width="62" height="21.666666666666671"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Imposto" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymC-fv-dPQ">
+                                                                    <rect key="frame" x="322" y="12" width="62" height="21"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemRedColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -329,7 +334,7 @@
                                                             <constraints>
                                                                 <constraint firstItem="ymC-fv-dPQ" firstAttribute="top" secondItem="Jxi-8u-O7B" secondAttribute="top" constant="12" id="FVd-iM-znx"/>
                                                                 <constraint firstAttribute="trailing" secondItem="ymC-fv-dPQ" secondAttribute="trailing" constant="10" id="kYr-k6-Pd1"/>
-                                                                <constraint firstItem="ymC-fv-dPQ" firstAttribute="leading" secondItem="W7e-eR-pho" secondAttribute="trailing" constant="33" id="mup-oV-EO6"/>
+                                                                <constraint firstItem="ymC-fv-dPQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="W7e-eR-pho" secondAttribute="trailing" constant="8" symbolic="YES" id="sfJ-Gd-ovJ"/>
                                                                 <constraint firstAttribute="bottom" secondItem="ymC-fv-dPQ" secondAttribute="bottom" constant="12" id="zAL-BE-XUy"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
@@ -491,7 +496,6 @@
         <image name="Itens" width="788" height="466"/>
         <image name="bag" catalog="system" width="128" height="128"/>
         <image name="gear" catalog="system" width="128" height="119"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
