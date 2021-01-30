@@ -14,7 +14,8 @@ protocol StateRepositoryProtocol {
     
     func loadStates()
     func deleteState(by name: String)
-    func save(state: State)
+    func save(stateName: String, stateTax: NSDecimalNumber)
+    func update(state: State)
 }
 
 final class StateRepository: StateRepositoryProtocol {
@@ -33,7 +34,11 @@ final class StateRepository: StateRepositoryProtocol {
         }
     }
     
-    func save(state: State) {
+    func save(stateName: String, stateTax: NSDecimalNumber) {
+        persistLocal(stateName, stateTax)
+    }
+    
+    func update(state: State) {
         persistLocal(state: state)
     }
     
@@ -71,19 +76,21 @@ final class StateRepository: StateRepositoryProtocol {
         }
     }
     
-    private func persistLocal(state: State) {
+    private func persistLocal(state: State? = nil, _ name: String? = nil, _ tax: NSDecimalNumber? = nil) {
         guard let context = context else { return }
         do {
             let fetchedRequest: NSFetchRequest<State> = State.fetchRequest()
             let cdStates = try context.fetch(fetchedRequest)
-            guard let index = cdStates.firstIndex(where: { $0.name == state.name }) else {
+            guard let index = cdStates.firstIndex(where: { $0.name == state?.name }) else {
                 let cdState = State(context: context)
-                cdState.addStateData(state)
+                cdState.name = name
+                cdState.tax = tax
+                cdState.id = UUID()
                 try context.save()
                 delegate?.stateRepository(wasStateSaved: true)
                 return
             }
-            cdStates[index].addStateData(state)
+            cdStates[index].addStateData(state!)
             try context.save()
             delegate?.stateRepository(wasStateSaved: true)
         } catch {

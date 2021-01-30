@@ -9,5 +9,16 @@
 import Foundation
 
 final class StateViewModel {
+    private let state: State
     
+    var name: String {
+        state.name ?? ""
+    }
+    var tax: String {
+        "\(state.tax ?? 0)"
+    }
+    
+    init(state: State) {
+        self.state = state
+    }
 }

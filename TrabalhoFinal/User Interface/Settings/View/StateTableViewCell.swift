@@ -13,10 +13,8 @@ class StateTableViewCell: UITableViewCell{
     @IBOutlet weak var lbState: UILabel!
     @IBOutlet weak var lbTax: UILabel!
     
-    func prepare (with estado: State){
-        
-        lbState.text = estado.name
-        lbTax.text = "\(estado.tax ?? 0)"
-        
+    func prepare (with viewModel: StateViewModel){
+        lbState.text = viewModel.name
+        lbTax.text = viewModel.tax
     }
 }
