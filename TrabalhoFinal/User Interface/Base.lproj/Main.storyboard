@@ -109,7 +109,7 @@
                                     <outlet property="ivProductImage" destination="bX3-0j-GgV" id="ZEH-Oh-1Le"/>
                                     <outlet property="lbProductName" destination="028-y2-O9q" id="q2Q-Zu-7d9"/>
                                     <outlet property="lbProductValue" destination="VyM-LZ-6Jd" id="o0V-y3-La8"/>
-                                    <segue destination="sEm-Sg-paq" kind="show" id="kgx-kc-7oN"/>
+                                    <segue destination="sEm-Sg-paq" kind="show" identifier="edit" id="kgx-kc-7oN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

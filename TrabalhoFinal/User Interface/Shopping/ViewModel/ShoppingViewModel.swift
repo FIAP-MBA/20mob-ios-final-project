@@ -21,7 +21,7 @@ final class ShoppingViewModel {
     weak var delegate: ShoppingViewModelDelegate?
     
     var productCount: Int {
-        0
+        products.count
     }
     
     init(_ repository: ProductRepositoryProtocol = ProductRepository()) {

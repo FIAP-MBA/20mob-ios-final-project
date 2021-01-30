@@ -138,6 +138,11 @@ extension RegisterShoppingViewModel: ProductRepositoryDelegate {
             delegate?.onSuccessSave()
         }
     }
+    
+    func productRepository(didUpdateProduct: Product) {
+        product = didUpdateProduct
+        delegate?.onSuccessLoadProduct()
+    }
 }
 
 //MARK: - State Repository Delegate

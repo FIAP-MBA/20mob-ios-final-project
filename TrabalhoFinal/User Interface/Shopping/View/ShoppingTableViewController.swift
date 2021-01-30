@@ -20,6 +20,11 @@ final class ShoppingTableViewController: UITableViewController {
         super.viewDidLoad()
     
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         setupData()
     }
     
@@ -41,6 +46,7 @@ final class ShoppingTableViewController: UITableViewController {
     }
     
     private func setupData() {
+        viewModel.delegate = self
         viewModel.loadData()
     }
     
@@ -70,7 +76,6 @@ final class ShoppingTableViewController: UITableViewController {
         return cell
     }
     
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             viewModel.deleteProduct(at: indexPath)
