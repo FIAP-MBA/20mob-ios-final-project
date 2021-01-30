@@ -25,7 +25,7 @@ final class SettingsViewModel {
         ud.string(forKey: UserDefaultKeys.dolar.rawValue) ?? "5.65"
     }
     var iof: String? {
-        ud.string(forKey: UserDefaultKeys.iof.rawValue) ?? "6.38
+        ud.string(forKey: UserDefaultKeys.iof.rawValue) ?? "6.38"
     }
     var statesCount: Int {
         states.count
