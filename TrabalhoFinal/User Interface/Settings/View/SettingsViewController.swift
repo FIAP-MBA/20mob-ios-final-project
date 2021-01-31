@@ -35,6 +35,7 @@ final class SettingsViewController: UIViewController {
         
         tfDolar1.text = viewModel.dolar
         tfIof1.text = viewModel.iof
+        viewModel.saveDolarAndIOF(tfDolar1.text!, tfIof1.text!)
     }
         
     //MARK: - Methods
