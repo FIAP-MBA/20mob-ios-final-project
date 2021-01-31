@@ -23,6 +23,10 @@ final class RegisterShoppingViewController: UIViewController {
     var viewModel: RegisterShoppingViewModel?
     var alertText: Bool = false
     var alertNumber: Bool = false
+    var alertProductPicture: Bool = false
+    var alertState: Bool = false
+    
+    var isPictureChanged = false
     
     //MARK: - Super Methods
     override func viewDidLoad() {
@@ -105,7 +109,8 @@ final class RegisterShoppingViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    private func showAlert(_ validateText: Bool, _ validateNumber: Bool ) {
+    private func showAlert(_ validateText: Bool, _ validateNumber: Bool,
+                           _ validateProductPicture: Bool, _ validateState: Bool) {
         var text: String = ""
         
         if validateText && !validateNumber {
@@ -114,6 +119,10 @@ final class RegisterShoppingViewController: UIViewController {
             text = "O campo de valor aceita apenas números. Por gentileza, verifique novamente!"
         } else if validateText && validateNumber {
             text = "Valores incorretos, por gentileza, verifique se há apenas números no campo de valor e se esqueceu de preencher algum outro campo!"
+        } else if validateProductPicture {
+            text = "É necessário escolher a foto do produto"
+        } else if validateState {
+            text = "Nenhum estado selecionado"
         }
         
         let alertController = UIAlertController(title: "ComprasUSA", message: text, preferredStyle: .alert)
@@ -135,12 +144,23 @@ final class RegisterShoppingViewController: UIViewController {
         return Double(number) != nil
     }
     
+    private func validateState() -> Bool {
+        let numberOfRows = pvProductState.numberOfRows(inComponent: 0)
+        print(numberOfRows)
+        return pvProductState.numberOfRows(inComponent: 0) > 0
+    }
+    
+    private func validateProductPicture() -> Bool {
+        return isPictureChanged
+    }
+    
     private func fillData() {
         tfProductName.text = viewModel?.name
         tfProductValue.text = viewModel?.value
         swProductCard.isOn = viewModel?.isCredit ?? false
         if let data = viewModel?.image {
             ivProductImage.image = UIImage(data: data)
+            isPictureChanged = true
         }
         pvProductState.selectRow(viewModel?.state ?? 0, inComponent: 0, animated: true)
     }
@@ -165,6 +185,8 @@ final class RegisterShoppingViewController: UIViewController {
             alertText = !validateText(tfProductValue.text)
         }
         alertNumber = !validateNumber(tfProductValue.text)
+        alertProductPicture = !validateProductPicture()
+        alertState = !validateState()
         
         viewModel?.set(name: tfProductName.text!)
         viewModel?.set(value: NSDecimalNumber(string: tfProductValue.text ?? "0.0"))
@@ -172,8 +194,8 @@ final class RegisterShoppingViewController: UIViewController {
         viewModel?.set(image: ivProductImage.image?.jpegData(compressionQuality: 0.8))
         viewModel?.set(row: pvProductState.selectedRow(inComponent: 0))
         
-        if alertText || alertNumber {
-            showAlert(alertText, alertNumber)
+        if alertText || alertNumber || alertProductPicture || alertState {
+            showAlert(alertText, alertNumber, alertProductPicture, alertState)
             return
         }
         viewModel?.saveProduct()
@@ -235,6 +257,7 @@ extension RegisterShoppingViewController: UIImagePickerControllerDelegate, UINav
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             ivProductImage.image = image
+            isPictureChanged = true
         }
         dismiss(animated: true, completion: nil)
     }
