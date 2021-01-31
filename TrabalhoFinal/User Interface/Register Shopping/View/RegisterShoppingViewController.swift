@@ -145,8 +145,6 @@ final class RegisterShoppingViewController: UIViewController {
     }
     
     private func validateState() -> Bool {
-        let numberOfRows = pvProductState.numberOfRows(inComponent: 0)
-        print(numberOfRows)
         return pvProductState.numberOfRows(inComponent: 0) > 0
     }
     
