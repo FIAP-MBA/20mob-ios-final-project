@@ -42,7 +42,7 @@
 		1108929425BA4553002951D8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1108929625BA472A002951D8 /* StateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTableViewCell.swift; sourceTree = "<group>"; };
 		1108929825BA4AD8002951D8 /* TotalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalViewController.swift; sourceTree = "<group>"; };
-		11BC7039255B5878006811C6 /* TrabalhoFinal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrabalhoFinal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		11BC7039255B5878006811C6 /* ValmirWeltonCesarRafael.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ValmirWeltonCesarRafael.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11BC703C255B5879006811C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11BC7043255B5879006811C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		11BC7045255B587A006811C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		11BC703A255B5878006811C6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				11BC7039255B5878006811C6 /* TrabalhoFinal.app */,
+				11BC7039255B5878006811C6 /* ValmirWeltonCesarRafael.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -263,9 +263,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		11BC7038255B5878006811C6 /* TrabalhoFinal */ = {
+		11BC7038255B5878006811C6 /* ValmirWeltonCesarRafael */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 11BC704D255B587A006811C6 /* Build configuration list for PBXNativeTarget "TrabalhoFinal" */;
+			buildConfigurationList = 11BC704D255B587A006811C6 /* Build configuration list for PBXNativeTarget "ValmirWeltonCesarRafael" */;
 			buildPhases = (
 				11BC7035255B5878006811C6 /* Sources */,
 				11BC7036255B5878006811C6 /* Frameworks */,
@@ -275,9 +275,9 @@
 			);
 			dependencies = (
 			);
-			name = TrabalhoFinal;
+			name = ValmirWeltonCesarRafael;
 			productName = TrabalhoFinal;
-			productReference = 11BC7039255B5878006811C6 /* TrabalhoFinal.app */;
+			productReference = 11BC7039255B5878006811C6 /* ValmirWeltonCesarRafael.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -295,7 +295,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 11BC7034255B5878006811C6 /* Build configuration list for PBXProject "TrabalhoFinal" */;
+			buildConfigurationList = 11BC7034255B5878006811C6 /* Build configuration list for PBXProject "ValmirWeltonCesarRafael" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -308,7 +308,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				11BC7038255B5878006811C6 /* TrabalhoFinal */,
+				11BC7038255B5878006811C6 /* ValmirWeltonCesarRafael */,
 			);
 		};
 /* End PBXProject section */
@@ -533,7 +533,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		11BC7034255B5878006811C6 /* Build configuration list for PBXProject "TrabalhoFinal" */ = {
+		11BC7034255B5878006811C6 /* Build configuration list for PBXProject "ValmirWeltonCesarRafael" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				11BC704B255B587A006811C6 /* Debug */,
@@ -542,7 +542,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		11BC704D255B587A006811C6 /* Build configuration list for PBXNativeTarget "TrabalhoFinal" */ = {
+		11BC704D255B587A006811C6 /* Build configuration list for PBXNativeTarget "ValmirWeltonCesarRafael" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				11BC704E255B587A006811C6 /* Debug */,
