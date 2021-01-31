@@ -170,6 +170,7 @@ final class RegisterShoppingViewController: UIViewController {
         viewModel?.set(value: NSDecimalNumber(string: tfProductValue.text ?? "0.0"))
         viewModel?.set(isCredit: swProductCard.isOn)
         viewModel?.set(image: ivProductImage.image?.jpegData(compressionQuality: 0.8))
+        viewModel?.set(row: pvProductState.selectedRow(inComponent: 0))
         
         if alertText || alertNumber {
             showAlert(alertText, alertNumber)

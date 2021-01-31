@@ -112,6 +112,14 @@ final class RegisterShoppingViewModel {
         newProductImage = image
     }
     
+    func set(row: Int) {
+        if isEditing {
+            product?.state = selectedState
+            return
+        }
+        selectedState = states.count > 0 ? states[row] : nil
+    }
+    
     func saveProduct() {
         if isEditing {
             productRepository.update(product: product!)
