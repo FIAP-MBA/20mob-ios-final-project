@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r69-dc-RPy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r69-dc-RPy">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,11 +28,11 @@
             </objects>
             <point key="canvasLocation" x="-948" y="244"/>
         </scene>
-        <!--Item-->
+        <!--Compras-->
         <scene sceneID="bjK-Jn-RZ4">
             <objects>
                 <navigationController id="f8r-Pd-cbZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="person.3.fill" catalog="system" id="omo-EU-Nkf"/>
+                    <tabBarItem key="tabBarItem" title="Compras" image="case" catalog="system" id="omo-EU-Nkf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OJC-d9-Rxf">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -48,7 +48,7 @@
         <!--Lista de Compras-->
         <scene sceneID="JNl-kh-eBq">
             <objects>
-                <tableViewController id="YfI-MD-PYP" customClass="ShoppingTableViewController" customModule="TrabalhoFinal" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="YfI-MD-PYP" customClass="ShoppingTableViewController" customModule="ValmirWeltonCesarRafael" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="nfh-KY-h8D">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,7 +59,7 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="80" id="ESp-6g-JJD" customClass="ShoppingTableViewCell" customModule="TrabalhoFinal" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="80" id="ESp-6g-JJD" customClass="ShoppingTableViewCell" customModule="ValmirWeltonCesarRafael" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="390" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ESp-6g-JJD" id="tND-U7-i2j">
@@ -134,7 +134,7 @@
         <!--Cadastrar Produto-->
         <scene sceneID="yfc-eW-ZCP">
             <objects>
-                <viewController id="sEm-Sg-paq" customClass="RegisterShoppingViewController" customModule="TrabalhoFinal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sEm-Sg-paq" customClass="RegisterShoppingViewController" customModule="ValmirWeltonCesarRafael" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7YA-En-zHQ">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -266,13 +266,13 @@
         <!--Ajustes-->
         <scene sceneID="P77-pY-xis">
             <objects>
-                <viewController id="xH4-q4-Bnq" customClass="SettingsViewController" customModule="TrabalhoFinal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xH4-q4-Bnq" customClass="SettingsViewController" customModule="ValmirWeltonCesarRafael" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AJV-GV-tIY" userLabel="View" customClass="Ajus">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="md9-8L-KnP">
-                                <rect key="frame" x="0.0" y="88" width="390" height="673"/>
+                                <rect key="frame" x="0.0" y="44" width="390" height="717"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="reB-N6-aao" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="620"/>
@@ -305,20 +305,20 @@
                                                     <constraint firstAttribute="height" constant="400" id="Q0d-ED-l4H"/>
                                                 </constraints>
                                                 <view key="tableFooterView" contentMode="scaleToFill" id="Y4I-hE-Cgl">
-                                                    <rect key="frame" x="0.0" y="101.66666793823242" width="370" height="44"/>
+                                                    <rect key="frame" x="0.0" y="101.33333206176758" width="370" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="7SZ-qX-yga" customClass="StateTableViewCell" customModule="TrabalhoFinal" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="370" height="45.666667938232422"/>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="7SZ-qX-yga" customClass="StateTableViewCell" customModule="ValmirWeltonCesarRafael" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="370" height="45.333332061767578"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7SZ-qX-yga" id="Jxi-8u-O7B">
-                                                            <rect key="frame" x="0.0" y="0.0" width="370" height="45.666667938232422"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="370" height="45.333332061767578"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Imposto" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymC-fv-dPQ">
-                                                                    <rect key="frame" x="298.33333333333331" y="12.000000000000002" width="61.666666666666686" height="21.666666666666671"/>
+                                                                    <rect key="frame" x="298.33333333333331" y="11.999999999999998" width="61.666666666666686" height="21.333333333333329"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemRedColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -412,7 +412,7 @@
                             <constraint firstItem="Pja-yT-DNE" firstAttribute="bottom" secondItem="md9-8L-KnP" secondAttribute="bottom" id="OTU-4a-lt8"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Ajustes" image="gear" catalog="system" id="QNo-W1-0e8"/>
+                    <tabBarItem key="tabBarItem" title="Ajustes" image="gearshape.2" catalog="system" id="QNo-W1-0e8"/>
                     <navigationItem key="navigationItem" id="qfp-aF-CHO"/>
                     <connections>
                         <outlet property="scrollView" destination="md9-8L-KnP" id="P0C-Fg-7Pn"/>
@@ -425,10 +425,10 @@
             </objects>
             <point key="canvasLocation" x="560.86956521739137" y="592.63392857142856"/>
         </scene>
-        <!--Compras-->
+        <!--Total da Compra-->
         <scene sceneID="Ixw-hL-ziw">
             <objects>
-                <viewController id="iO8-zN-YjT" customClass="TotalViewController" customModule="TrabalhoFinal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iO8-zN-YjT" customClass="TotalViewController" customModule="ValmirWeltonCesarRafael" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o8n-me-Y83">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -477,7 +477,7 @@
                             <constraint firstItem="WQD-rO-Jfc" firstAttribute="top" secondItem="DaI-D6-iWS" secondAttribute="bottom" id="tSp-x2-gyH"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Compras" image="bag" catalog="system" id="9tv-2H-bOZ"/>
+                    <tabBarItem key="tabBarItem" title="Total da Compra" image="case" catalog="system" id="9tv-2H-bOZ"/>
                     <connections>
                         <outlet property="lbTotalBRL" destination="cnO-EM-z1E" id="9K3-4x-d6I"/>
                         <outlet property="lbTotalUSD" destination="WQD-rO-Jfc" id="tcf-P5-eaa"/>
@@ -489,14 +489,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ZHz-RM-Q0n"/>
+        <segue reference="4Yo-KB-YAa"/>
         <segue reference="kgx-kc-7oN"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Itens" width="788" height="466"/>
-        <image name="bag" catalog="system" width="128" height="128"/>
-        <image name="gear" catalog="system" width="128" height="119"/>
-        <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="case" catalog="system" width="128" height="98"/>
+        <image name="gearshape.2" catalog="system" width="128" height="100"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
